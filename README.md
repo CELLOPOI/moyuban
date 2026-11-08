@@ -1,17 +1,17 @@
-# 摸鱼办 · DSH Moyu
+# 摸鱼办 · moyuban
 
 在 DeepSeek Harness（DSH）的工作区里，用文字索引刷小红书、逛贴吧、看 NGA。装好后，点左栏 **资料摘录 → 阅读索引** 就能打开小红书推荐。想看论坛，点 **百度贴吧** 或 **资料整理** 右侧的 **新会话（＋）** 选吧、选版面。
 
 ## 安装
 
-先下载 [摸鱼办 0.13.0 安装包（.tgz）](https://github.com/CELLOPOI/dsh-moyu/releases/download/v0.13.0/dsh-moyu-0.13.0.tgz)，保留压缩包原样。实测宿主为 **DSH 0.2.2-rc.1**。要看小红书，请在运行 DSH 的电脑上安装 Chrome 或 Edge，扫码窗口也会开在那台电脑上。
+先下载 [摸鱼办 0.14.0 安装包（.tgz）](https://github.com/CELLOPOI/moyuban/releases/download/v0.14.0/moyuban-0.14.0.tgz)，保留压缩包原样。实测宿主为 **DSH 0.2.2-rc.1**。要看小红书，请在运行 DSH 的电脑上安装 Chrome 或 Edge，扫码窗口也会开在那台电脑上。
 
 **桌面端**打开 **插件 → 添加插件**，在「包名或地址」中填入下载链接，或填安装包在宿主电脑上的绝对路径。点 **安装**，完成后点 **立即启用**。启用后，插件列表里会显示 **摸鱼办**。
 
 **Web 端**在宿主上打开终端，进入安装包所在目录，运行下面的命令。如果 `dsh web` 正在运行，先停止旧进程，再启动。桌面和 Web 分别安装、启用。
 
 ```sh
-dsh plugin --profile web add ./dsh-moyu-0.13.0.tgz
+dsh plugin --profile web add ./moyuban-0.14.0.tgz
 dsh web
 ```
 
@@ -55,13 +55,7 @@ dsh web
 
 贴吧的普通分类位于 `plugin-workspaces/百度贴吧/分类/`，可以在目录编辑器中查看完整路径，也可以直接编辑 UTF-8 的 `.ts` 文件。NGA 的手动入口、收藏快照和最近选版默认保存在 `plugin-data/dsh-nga-reader/boards/`。使用同一主目录的两端共用这些文件。论坛草稿、引用和阅读位置保存在各阅读端的本地存储中。
 
-**从旧包 `dsh-nga-reader` 升级**（含 0.11.2 和 0.12.0）时，请继续使用原来的 DSH 主目录和阅读端。DSH 会把新旧包识别为两个插件。桌面端先到 **插件 → dsh-nga-reader → 卸载**，再按上面的步骤安装并启用 **摸鱼办**。Web 端先停止 `dsh web`，在新安装包所在目录依次运行以下命令。
-
-```sh
-dsh plugin --profile web remove dsh-nga-reader
-dsh plugin --profile web add ./dsh-moyu-0.13.0.tgz
-dsh web
-```
+**装过本仓库旧版的用户**请继续使用原来的 DSH 主目录和阅读端。从 [CELLOPOI 发布的摸鱼办 0.13.0](https://github.com/CELLOPOI/moyuban/releases/tag/v0.13.0) 升级时，桌面端打开 **插件 → 摸鱼办**，核对版本为 **0.13.0**，点 **卸载**，再按上面的步骤安装新版。[Web 端升级命令和更早版本说明](docs/maintenance.md#从本项目旧版升级)
 
 升级会沿用已有分类及顺序、收藏、账号记录、会话编号和真实帖子草稿。上次停在 NGA 示例帖时，会恢复上次真实阅读位置。没有真实记录时会打开讨论索引。示例草稿不会带入同编号的真实帖子。
 
@@ -73,7 +67,7 @@ dsh web
 
 **怎么改置顶、跳转或图片缓存？** 打开 **插件 → 摸鱼办**，或点阅读输入栏 **＋ → 阅读设置…**。两处编辑同一份设置，设置页显示文件的实际路径。[默认设置](reader-settings.json) · [配置与分类文件说明](docs/maintenance.md)
 
-反馈问题时，请附上插件和 DSH 版本、使用的站点、桌面或 Web、操作步骤及界面提示。截图请遮住登录二维码和账号信息。[提交 Issue](https://github.com/CELLOPOI/dsh-moyu/issues)
+反馈问题时，请附上插件和 DSH 版本、使用的站点、桌面或 Web、操作步骤及界面提示。截图请遮住登录二维码和账号信息。[提交 Issue](https://github.com/CELLOPOI/moyuban/issues)
 
 ## 从源码打包
 

@@ -8,7 +8,7 @@ import { readerSettings } from './settings.js'
 import { siteRegistry } from './sites.js'
 import { boardWorkspace } from './workspace.js'
 
-export const name = 'dsh-moyu'
+export const name = 'moyuban'
 export const inject = ['connection', 'credentials', 'workspaceRegistry', 'sessionPersistence', 'sessions']
 
 // 保留已有的程序化 NGA 调用入口，和 DSH 路由共用相同的校验与分发。

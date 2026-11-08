@@ -15,7 +15,7 @@ import { excerptStore } from './excerpt-store.js'
 import { excerptAddress, excerptTab, ExcerptIndex, ExcerptComposer, ExcerptPreview, OpenExcerptIndex } from './excerpts.jsx'
 import css from './reader.css'
 
-export const name = 'dsh-moyu'
+export const name = 'moyuban'
 export const inject = ['slots', 'shortcuts', 'layout', 'sessions', 'uiWorkspace', 'workspaces', 'sidebarRight', 'sidebarRightTabs']
 
 export function apply(ctx) {

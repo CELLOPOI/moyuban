@@ -1,8 +1,8 @@
-# 摸鱼办（DSH Moyu）维护入口
+# 摸鱼办（moyuban）维护入口
 
 这是给其他人安装的 DeepSeek Harness 插件。它在原生工作区里提供 NGA、百度贴吧和小红书阅读入口。先从 [README](README.md) 了解使用者看到的行为；涉及侧栏、卡片、右栏时，对照[选吧界面](docs/tieba-workspace.png)和[文字摘录界面](docs/excerpt-workspace.png)。
 
-**当前版本为 0.13.0**，包名为 `dsh-moyu`，适配 DSH 0.2.2-rc.1。小红书采用主区文字索引，右栏按需展开附件。[游客与专用账号的研究结论](docs/xiaohongshu-research.md) · [配置与站点适配器接口](docs/maintenance.md)
+**当前版本为 0.14.0**，包名为 `moyuban`，适配 DSH 0.2.2-rc.1。小红书采用主区文字索引，右栏按需展开附件。[游客与专用账号的研究结论](docs/xiaohongshu-research.md) · [配置与站点适配器接口](docs/maintenance.md)
 
 首页配图使用最终界面与虚构条目，图注标明「界面示意，条目为虚构」。打包时核对 README 的相对图片路径，并在已安装插件的详情页查看。
 

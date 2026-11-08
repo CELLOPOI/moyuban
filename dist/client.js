@@ -1,4 +1,4 @@
-window.__ModuleLoader__.load({ id: "dsh-moyu", factory(require) { const module = { exports: {} };
+window.__ModuleLoader__.load({ id: "moyuban", factory(require) { const module = { exports: {} };
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -2993,7 +2993,7 @@ var reader_default = `/* \u8FD9\u4E2A\u672C\u5730\u8F6E\u6B21\u6302\u8F7D\u7684\
 `;
 
 // src/client/index.jsx
-var name = "dsh-moyu";
+var name = "moyuban";
 var inject = ["slots", "shortcuts", "layout", "sessions", "uiWorkspace", "workspaces", "sidebarRight", "sidebarRightTabs"];
 function apply(ctx) {
   const prefs = preferences(call);

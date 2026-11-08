@@ -2,7 +2,7 @@
 
 ## 阅读设置
 
-从 0.13.0 起，DSH 以 `dsh-moyu` 安装、启用插件和挂载设置页。[中文显示名](../locale/zh.json)为「摸鱼办」。原有 `dsh-nga-reader` 会话编号、浏览器存储键、凭据键、数据路径、资源地址和宿主 API 路径仍供新版本使用。更换插件包即可继续读取旧数据。
+DSH 以 `moyuban` 安装、启用插件和挂载设置页，[中文显示名](../locale/zh.json)为「摸鱼办」。各版共用原有的 `dsh-nga-reader` 会话编号、浏览器存储键、凭据键、数据路径、资源地址和宿主 API 路径，因此升级后可以继续读取旧数据。
 
 设置页会显示宿主上的配置文件、缓存和版面数据目录。默认配置文件是 `DSH_HOME/plugin-workspaces/资料整理/reader-settings.json`。保存表单时，宿主按文件修订号核对并原子写入。如果其他窗口或编辑器已经修改文件，点「重新读取」合并后再保存。[默认配置](../reader-settings.json)
 
@@ -16,6 +16,18 @@
 | `defaultModel`、`defaultEffort`、`defaultPermission` | 新阅读会话的工具栏外观。已有会话优先使用端内保存的选择。这些选项不参与论坛请求。 |
 
 切换到空的版面数据目录时，宿主会复制已有手动入口、各账号的收藏快照和最近选版记录。目标已有版面数据时，使用目标中的记录。原目录保留，公开目录和媒体缓存在新位置按需重建。0.11.2 配置中的 `defaultSource` 会在读取时忽略，下次保存设置时移除。[设置读写与迁移](../src/host/settings.js) · [版面文件命名](../src/host/board-files.js)
+
+## 从本项目旧版升级
+
+[CELLOPOI 发布的摸鱼办 0.13.0](https://github.com/CELLOPOI/moyuban/releases/tag/v0.13.0) 的安装包为 `dsh-moyu-0.13.0.tgz`。如果 Web 端安装的是这一版，先停掉 `dsh web`，在新版安装包所在目录执行下面三行命令。
+
+```sh
+dsh plugin --profile web remove dsh-moyu
+dsh plugin --profile web add ./moyuban-0.14.0.tgz
+dsh web
+```
+
+本项目更早的 0.11.2 和 0.12.0 使用包名 `dsh-nga-reader`。从这两版升级时，Web 端第一行改用 `dsh plugin --profile web remove dsh-nga-reader`。桌面端在 **插件 → dsh-nga-reader** 卸载旧版，再安装新版。
 
 ## 贴吧分类
 

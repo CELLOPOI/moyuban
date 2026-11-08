@@ -1,8 +1,8 @@
 {
-  "name": "dsh-moyu",
-  "version": "0.13.0",
+  "name": "moyuban",
+  "version": "0.14.0",
   "description": "摸鱼办，在 DeepSeek Harness 工作区里刷小红书、逛贴吧、看 NGA 和引用回帖。",
-  "repository": { "type": "git", "url": "git+https://github.com/CELLOPOI/dsh-moyu.git" },
+  "repository": { "type": "git", "url": "git+https://github.com/CELLOPOI/moyuban.git" },
   "type": "module",
   "main": "./src/host/index.js",
   "exports": {
