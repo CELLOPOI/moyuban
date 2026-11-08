@@ -1,0 +1,39 @@
+{
+  "format": 1,
+  "title": {
+    "en": "moyuban releases",
+    "zh": "摸鱼办发布索引"
+  },
+  "plugins": [
+    {
+      "name": "moyuban",
+      "title": {
+        "en": "moyuban",
+        "zh": "摸鱼办"
+      },
+      "description": {
+        "en": "Browse Xiaohongshu recommendations, Baidu Tieba threads and NGA forums in DSH workspaces. Reply to NGA threads with a quote.",
+        "zh": "在 DSH 工作区读小红书推荐、逛百度贴吧、看 NGA，也可以引用 NGA 楼层回帖。"
+      },
+      "author": "CELLOPOI",
+      "homepage": "https://github.com/CELLOPOI/moyuban#readme",
+      "repository": {
+        "url": "https://github.com/CELLOPOI/moyuban"
+      },
+      "versions": [
+        {
+          "version": "0.14.1",
+          "publishTimestamp": 1794142754,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/CELLOPOI/moyuban",
+            "commit": "1b4f7ac6721abe64154c5c71037a5e96fb9ae6c0"
+          },
+          "engines": {
+            "dsh": ">=0.2.2-rc.1"
+          }
+        }
+      ]
+    }
+  ]
+}
