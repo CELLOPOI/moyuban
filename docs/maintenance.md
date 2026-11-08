@@ -23,7 +23,7 @@ DSH 以 `moyuban` 安装、启用插件和挂载设置页，[中文显示名](..
 
 ```sh
 dsh plugin --profile web remove dsh-moyu
-dsh plugin --profile web add ./moyuban-0.14.0.tgz
+dsh plugin --profile web add ./moyuban-0.14.1.tgz
 dsh web
 ```
 

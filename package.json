@@ -1,6 +1,7 @@
 {
   "name": "moyuban",
-  "version": "0.14.0",
+  "version": "0.14.1",
+  "license": "MIT",
   "description": "摸鱼办，在 DeepSeek Harness 工作区里刷小红书、逛贴吧、看 NGA 和引用回帖。",
   "repository": { "type": "git", "url": "git+https://github.com/CELLOPOI/moyuban.git" },
   "type": "module",

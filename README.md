@@ -4,14 +4,22 @@
 
 ## 安装
 
-先下载 [摸鱼办 0.14.0 安装包（.tgz）](https://github.com/CELLOPOI/moyuban/releases/download/v0.14.0/moyuban-0.14.0.tgz)，保留压缩包原样。实测宿主为 **DSH 0.2.2-rc.1**。要看小红书，请在运行 DSH 的电脑上安装 Chrome 或 Edge，扫码窗口也会开在那台电脑上。
+实测宿主为 **DSH 0.2.2-rc.1**。要看小红书，请在运行 DSH 的电脑上安装 Chrome 或 Edge，扫码窗口也会开在那台电脑上。
+
+**从「发现」安装**时，在 **插件 → 实验性插件** 中打开 **自定义插件索引**。进入 **发现 → 添加索引源**，粘贴下面的地址，点 **添加**。如果已经添加过其他索引，从左上角的索引菜单进入 **管理索引源…**。选中 **摸鱼办发布索引**，搜 **摸鱼办** 或 `moyuban`，点 **安装**。
+
+```text
+https://raw.githubusercontent.com/CELLOPOI/moyuban/main/market/index.json
+```
+
+也可以直接下载 [摸鱼办 0.14.1 安装包（.tgz）](https://github.com/CELLOPOI/moyuban/releases/download/v0.14.1/moyuban-0.14.1.tgz)，保留压缩包原样，按下面的方式安装。
 
 **桌面端**打开 **插件 → 添加插件**，在「包名或地址」中填入下载链接，或填安装包在宿主电脑上的绝对路径。点 **安装**，完成后点 **立即启用**。启用后，插件列表里会显示 **摸鱼办**。
 
 **Web 端**在宿主上打开终端，进入安装包所在目录，运行下面的命令。如果 `dsh web` 正在运行，先停止旧进程，再启动。桌面和 Web 分别安装、启用。
 
 ```sh
-dsh plugin --profile web add ./moyuban-0.14.0.tgz
+dsh plugin --profile web add ./moyuban-0.14.1.tgz
 dsh web
 ```
 
@@ -80,5 +88,7 @@ npm pack
 ```
 
 修改源码后运行 `npm run build`，再运行 `npm test`。仓库跟踪构建好的 `dist/client.js`，原生工作区测试也会加载它。[维护说明与适配器接口](docs/maintenance.md)
+
+摸鱼办采用 [MIT 许可证](LICENSE)。
 
 论坛阅读界面的设计参考了 [Linux DO 的 Codex 外观](https://github.com/czm15053/linuxdo-idea-ui/blob/main/linuxdo-codex.user.js)。NGA 协议和扫码流程参考了 [NGA 接口资料](https://github.com/AgMonk/nga-api-doc/blob/main/README_v2.md)、[open-NGA-client](https://github.com/youcai922/open-NGA-client) 和 [jo32 的 NGA Reader](https://github.com/jo32/dsh-nga-reader)。宿主安装方式见 [DSH 插件打包与安装说明](https://github.com/deepseek-ai/deepseek-harness/blob/dsh-v0.2.2-rc.1/docs/user/develop/basic/publish.zh.md)。
