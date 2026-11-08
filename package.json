@@ -1,0 +1,49 @@
+{
+  "name": "dsh-moyu",
+  "version": "0.13.0",
+  "description": "摸鱼办，在 DeepSeek Harness 工作区里刷小红书、逛贴吧、看 NGA 和引用回帖。",
+  "repository": { "type": "git", "url": "git+https://github.com/CELLOPOI/dsh-moyu.git" },
+  "type": "module",
+  "main": "./src/host/index.js",
+  "exports": {
+    ".": "./src/host/index.js",
+    "./client": "./dist/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "src/host/", "src/shared/", "src/sites/", "!src/sites/nga/editor.js",
+    "reader-settings.json", "dist/client.js", "cordis.patch.yml", "locale/", "README.md",
+    "docs/excerpt-workspace.png", "docs/tieba-workspace.png", "docs/maintenance.md"
+  ],
+  "keywords": ["dsh-plugin", "deepseek-harness", "nga", "tieba", "xiaohongshu"],
+  "engines": { "node": ">=22.12.0", "dsh": ">=0.2.2-rc.1" },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "compatibility": { "dshReleases": { "0.2.2-rc.1": "compatible" } },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-chat",
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-client-ui-sidebar-right",
+        "@deepseek-ai/dsh-client-shortcuts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "entities": "^7.0.0",
+    "json5": "^2.2.3",
+    "parse5": "^7.3.0",
+    "playwright-core": "1.62.1",
+    "qrcode": "^1.5.4",
+    "saxes": "^6.0.0"
+  },
+  "devDependencies": { "esbuild": "^0.28.2" }
+}

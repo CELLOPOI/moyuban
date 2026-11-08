@@ -1,0 +1,276 @@
+/* 这个本地轮次挂载的是索引，没有模型执行耗时。 */
+[data-conversation-session^="dsh-nga-reader-"] [data-turn-process="1"][data-turn-process-messages="0"][data-turn-process-tool-calls="0"] { display: none; }
+.ngar {
+  --ng-text: var(--dsw-alias-label-primary);
+  --ng-secondary: var(--dsw-alias-label-secondary);
+  --ng-muted: var(--dsw-alias-label-tertiary);
+  --ng-line: var(--dsw-alias-border-l2);
+  --ng-hover: var(--dsw-alias-interactive-bg-hover);
+  min-width: 0;
+  color: var(--ng-text);
+  font-size: var(--dsh-content-font-size, 14px);
+}
+.ngar, .ngar *, .ngar *::before, .ngar *::after { box-sizing: border-box; }
+.ngar button, .ngar input, .ngar textarea { font: inherit; color: inherit; }
+.ngar button { border: 0; background: transparent; cursor: pointer; }
+.ngar button:disabled { opacity: .45; cursor: default; }
+.ngar :is(button, [role=button], a):focus-visible { outline: 2px solid var(--dsw-static-deepseek-500, Highlight); outline-offset: 2px; }
+.ngar svg { flex: none; fill: currentColor; }
+.ngar-transcript { width: 100%; text-align: start; font-weight: 400; }
+.ngar-prompt { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; margin-bottom: 22px; }
+.ngar-bubble {
+  max-width: min(calc(var(--dsh-chat-content-width, 748px) * .702), 82%);
+  padding: 9px 16px; border-radius: 15px; background: var(--dsw-specific-bubble);
+  color: var(--ng-text); line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.ngar-prompt time, .ngar-byline { font-size: var(--dsh-content-font-size-secondary, 13px); color: var(--ng-muted); }
+.ngar-prompt time { padding-right: 9px; font-variant-numeric: tabular-nums; }
+.ngar .ngar-group, .ngar .ngar-topic {
+  display: flex; align-items: center; width: 100%; min-width: 0; text-align: left;
+  color: var(--ng-muted); font-size: var(--dsh-content-font-size-secondary, 13px);
+}
+.ngar .ngar-group { gap: 7px; padding: 3px 0; margin-bottom: 7px; }
+.ngar .ngar-topic { gap: 7px; min-height: calc(27px + var(--dsh-content-font-delta, 0px)); padding: 2px 0; border-radius: 4px; }
+.ngar .ngar-topic:hover, .ngar .ngar-group:hover { color: var(--ng-text); }
+.ngar-topic > span:first-of-type { flex: none; }
+.ngar i { display: inline-block; width: 2px; height: 2px; flex: none; border-radius: 50%; background: currentColor; opacity: .65; }
+.ngar .ngar-dot { margin: 0 8px; }
+.ngar-records { max-height: clamp(154px, calc(100dvh - 360px), 660px); overflow: auto; overscroll-behavior-y: contain; padding: 2px 5px 4px 2px; scrollbar-gutter: stable; }
+.ngar-records[hidden] { display: none; }
+.ngar-excerpts { overflow-anchor: none; }
+.ngar-excerpt-end { height: 1px; }
+.ngar-reading-status {
+  --dsw-alias-label-shimmer: var(--dsw-alias-label-deep-diving-shimmer);
+  display: flex; align-items: center; gap: 6px; min-height: 28px; margin-top: 8px;
+  color: var(--dsw-alias-label-deep-diving); font-size: calc(var(--dsh-content-font-size, 14px) - 2px);
+}
+.ngar-reading-icon { display: inline-flex; width: 14px; height: 14px; }
+@supports (mask-mode: alpha) and (mask-image: url('')) {
+  @media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+    .ngar-reading-icon { background: currentColor; mask: var(--ngar-whale) center / 100% 100% no-repeat; mask-mode: alpha; will-change: transform; }
+    .ngar-reading-icon svg { display: none; }
+  }
+}
+.ngar-excerpts .ngar-topic[aria-current=true] { color: var(--ng-text); background: var(--ng-hover); }
+.ngar-excerpt-pane { height: 100%; overflow: auto; padding: 15px 18px; font-weight: 400; }
+.ngar-excerpt-pane h3 { margin: 0 0 5px; font-size: 1.05em; font-weight: 600; overflow-wrap: anywhere; }
+.ngar-excerpt-body, .ngar-excerpt-comment { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; }
+.ngar-excerpt-body { margin: 14px 0; }
+.ngar-excerpt-section { margin-top: 12px; padding: 7px 0; border-top: 1px solid var(--ng-line); }
+.ngar-excerpt-section > button, .ngar .ngar-excerpt-link, .ngar-excerpt-tools, .ngar-excerpt-options {
+  color: var(--ng-secondary); font-size: var(--dsh-content-font-size-secondary, 13px);
+}
+.ngar .ngar-excerpt-link { padding: 5px 0; margin: 8px 0; }
+.ngar-excerpt-link kbd { color: var(--ng-muted); font: inherit; font-size: .9em; margin-left: 5px; }
+.ngar-excerpt-tools, .ngar-excerpt-options { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 12px; }
+.ngar-excerpt-tools button, .ngar-excerpt-options button { padding: 3px 5px; border-radius: 4px; }
+.ngar-excerpt-tools button:hover:enabled, .ngar-excerpt-options button:hover { background: var(--ng-hover); }
+.ngar-excerpt-options { border-top: 1px solid var(--ng-line); padding: 7px 4px; }
+.ngar-attachment { outline: none; }
+.ngar-attachment-frame { max-width: 100%; margin: 3px 0 6px; touch-action: pan-y; }
+.ngar-attachment-frame :is(img,video) { display: block; width: auto; height: auto; max-width: min(100%, 230px); max-height: min(240px, 38dvh); object-fit: contain; border-radius: 3px; }
+.ngar-attachment-frame video { width: min(100%, 230px); }
+.ngar-attachment.is-large .ngar-attachment-frame :is(img,video) { max-width: 100%; max-height: 68dvh; }
+.ngar-attachment.is-large .ngar-attachment-frame video { width: 100%; }
+.ngar-preview { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ngar-floor + .ngar-floor { margin-top: 15px; }
+.ngar-thought { margin: 3px 0 8px 7px; padding-left: 14px; border-left: 1px solid var(--ng-line); color: var(--ng-secondary); font-size: var(--dsh-content-font-size-secondary, 13px); }
+.ngar-output { margin-top: 4px; color: var(--ng-text); }
+.ngar-subposts { margin: 6px 0; color: var(--ng-muted); font-size: 12px; }
+.ngar-subposts summary { cursor: pointer; width: fit-content; }
+.ngar-subpost { margin: 6px 0 0 8px; padding-left: 10px; border-left: 2px solid var(--ng-line); }
+.ngar-subpost p { margin: 2px 0; color: var(--ng-text); white-space: pre-wrap; overflow-wrap: anywhere; }
+.ngar-floor p, .ngar-floor blockquote { margin: 4px 0; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ngar-floor blockquote { border-left: 2px solid var(--ng-line); padding-left: 10px; color: var(--ng-secondary); }
+.ngar-thought blockquote { padding-left: 0; border: 0; }
+.ngar-floor a { color: var(--dsw-static-deepseek-500, LinkText); text-decoration: underline; }
+.ngar-byline { display: flex; align-items: center; gap: 9px; font-size: 12px; }
+.ngar .ngar-quote { padding: 2px 5px; margin-left: -5px; border-radius: 4px; color: var(--ng-muted); font-size: 12px; }
+.ngar-hint button { padding: 2px 5px; border-radius: 4px; color: var(--ng-secondary); }
+.ngar .ngar-quote:hover, .ngar-hint button:hover { background: var(--ng-hover); }
+@media (hover: hover) {
+  .ngar-floor:not(:hover):not(:focus-within) .ngar-quote { opacity: 0; }
+}
+.ngar-picture img { display: block; max-width: 100%; max-height: 330px; object-fit: contain; margin: 7px 0; border-radius: 8px; }
+.ngar-smile { display: inline-block; width: auto; height: 1.55em; max-width: 2.5em; object-fit: contain; margin: 0 .08em; vertical-align: -.35em; }
+.ngar-pager { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--ng-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ngar-pager button, .ngar-round, .ngar-send-btn { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; }
+.ngar-pager button:hover:enabled, .ngar .ngar-round:hover { background: var(--ng-hover); }
+.ngar-hint { margin: 8px 0; color: var(--ng-muted); line-height: 1.6; }
+.ngar-composer-seat { width: 100%; padding: 8px var(--dsh-composer-side-clearance, 16px) 24px; }
+.ngar-composer {
+  position: relative; display: flex; flex-direction: column; gap: 12px; margin: 0 auto; container: reply-card / inline-size;
+  max-width: var(--dsh-composer-card-max-width, 780px); padding: 10px 8px 6px;
+  border-radius: var(--dsw-radius-panel, 18px); --dsw-elevation-stroke-color: var(--ng-line);
+  background: var(--dsw-specific-input-major); box-shadow: var(--dsw-elevation-soft, 0 0 0 1px var(--ng-line));
+}
+.ngar-composer textarea, .ngar-composer input {
+  display: block; width: 100%; padding: 0 7px; margin: 0; border: 0; outline: none;
+  background: transparent; color: var(--ng-text); line-height: calc(24px + var(--dsh-content-font-delta, 0px));
+}
+.ngar-composer textarea { height: 36px; resize: none; }
+@supports (field-sizing: content) {
+  .ngar-composer textarea { field-sizing: content; height: auto; min-height: 36px; max-height: min(128px, 22dvh); }
+}
+.ngar-composer input { height: 36px; }
+.ngar-composer :is(input,textarea)::placeholder { color: var(--dsw-alias-label-caption, var(--ng-muted)); }
+.ngar-tools, .ngar-tool-left, .ngar-formats, .ngar-send, .ngar-target { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.ngar-tools { flex-wrap: wrap; gap: 4px 10px; }
+.ngar-tool-left { flex-wrap: wrap; }
+.ngar-formats { gap: 1px; padding-left: 5px; border-left: 1px solid var(--ng-line); }
+.ngar .ngar-add, .ngar .ngar-round, .ngar .ngar-tool { display: inline-grid; place-items: center; width: 28px; height: 28px; padding: 0; border-radius: 6px; color: var(--ng-secondary); }
+.ngar .ngar-add, .ngar .ngar-round { border-radius: 50%; corner-shape: round; background: var(--ng-hover); }
+.ngar .ngar-chip { display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 4px; border-radius: 6px; color: var(--ng-secondary); white-space: nowrap; font-size: var(--dsh-content-font-size-secondary, 13px); }
+.ngar :is(.ngar-tool,.ngar-chip):is(:hover:enabled,[aria-expanded=true]) { background: var(--ng-hover); color: var(--ng-text); }
+.ngar .ngar-line-icon { fill: none; stroke: currentColor; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+.ngar-quote-glyph { font: 19px Georgia, serif; line-height: 1; transform: translateY(2px); }
+.ngar-send { margin-left: auto; gap: 7px; color: var(--ng-muted); font-size: 12px; }
+.ngar .ngar-model-icon { display: none; }
+.ngar-permission > svg:first-child { fill: none; }
+.ngar-effort { color: var(--ng-muted); }
+.ngar .ngar-send-btn { width: 34px; height: 34px; padding: 0; border-radius: 50%; corner-shape: round; color: white; background: var(--dsw-alias-button-info-fill, var(--dsw-static-deepseek-500, #467af0)); }
+.ngar .ngar-send-btn:disabled { opacity: .4; }
+.ngar-target { margin: 0 6px; padding-left: 8px; border-left: 2px solid var(--ng-line); color: var(--ng-secondary); font-size: 12px; }
+.ngar-target span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ngar-target button { margin-left: auto; }
+.ngar .ngar-menu { position: absolute; bottom: calc(100% + 5px); left: 8px; z-index: 5; width: max-content; min-width: 175px; max-width: calc(100% - 16px); max-height: min(300px, 48dvh); overflow: auto; padding: 5px; color: var(--ng-text); }
+.ngar .ngar-menu-right { left: auto; right: 42px; }
+.ngar-menu button { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 9px; border-radius: 6px; font-size: 13px; }
+.ngar-menu button:is(:hover,:focus-visible) { background: var(--ng-hover); }
+.ngar-menu button > span, .ngar-menu button[role=menuitemradio] > svg { margin-left: auto; color: var(--ng-muted); }
+.ngar-menu hr { margin: 4px; border: 0; border-top: 1px solid var(--ng-line); }
+.ngar-face-picker { width: 310px; max-width: 100%; }
+.ngar-face-picker select { width: 100%; padding: 5px 7px; border: 1px solid var(--ng-line); border-radius: 5px;
+  color: var(--ng-text); background: var(--dsw-specific-input-major); font: inherit; }
+.ngar-face-scroll { height: clamp(120px, 28dvh, 210px); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-gutter: stable; }
+.ngar-face-page { height: 100%; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); gap: 2px; padding-block: 5px; }
+.ngar-face-page button { flex-direction: column; justify-content: center; gap: 2px; padding: 2px; min-width: 0; }
+.ngar-face-page button span { margin: 0; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 11px; }
+.ngar-face-page .ngar-smile { height: 25px; max-width: 45px; margin: 0; }
+.ngar-face-pager { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--ng-line); padding-top: 3px; font-size: 12px; color: var(--ng-secondary); }
+.ngar-face-pager button { width: 30px; padding: 4px; justify-content: center; }
+.ngar-url { width: 230px; max-width: 100%; display: grid; gap: 7px; padding: 5px; font-size: 13px; }
+.ngar-url label { display: grid; gap: 5px; }
+.ngar-url input { height: 30px; border: 1px solid var(--ng-line); border-radius: 6px; }
+.ngar-url button { width: auto; justify-self: end; background: var(--ng-hover); }
+.ngar-url p, .ngar-tool-error { margin: 0; color: var(--ng-secondary); font-size: 12px; }
+@container reply-card (max-width: 560px) {
+  .ngar-permission > span { display: none; }
+  .ngar-formats { gap: 0; }
+  .ngar .ngar-tool { width: 25px; }
+}
+@container reply-card (max-width: 465px) {
+  .ngar-tools, .ngar-tool-left, .ngar-send { column-gap: 3px; }
+}
+@container reply-card (max-width: 280px) {
+  .ngar .ngar-model-icon { display: block; }
+  .ngar-model > span:not(.ngar-effort) { display: none; }
+}
+.ngar-dialog { margin: auto; width: min(350px, 90vw); padding: 22px; border: 1px solid var(--ng-line); border-radius: 15px; background: var(--dsw-specific-input-major); color: var(--ng-text); box-shadow: var(--dsw-elevation-soft); }
+.ngar-dialog::backdrop { background: #0005; }
+.ngar-dialog-head { display: flex; align-items: center; justify-content: space-between; }
+.ngar-dialog h2 { margin: 0; font-size: 18px; }
+.ngar-dialog-head button { font-size: 20px; }
+.ngar-dialog p { color: var(--ng-secondary); font-size: 13px; }
+.ngar-dialog .ngar-btn { padding: 6px 10px; border: 1px solid var(--ng-line); border-radius: 7px; }
+.ngar .ngar-entry-input { text-align: left; height: 36px; padding: 0 7px; color: var(--ng-muted); }
+.ngar-library-status { max-width: var(--dsh-composer-card-max-width, 780px); margin: 6px auto 0; color: var(--ng-secondary); font-size: 12px; }
+.ngar-menu-note { max-width: 240px; margin: 5px 9px; color: var(--ng-secondary); font-size: 12px; }
+.ngar-board-dialog form { display: grid; gap: 10px; margin-top: 16px; }
+.ngar-board-dialog label { display: grid; gap: 6px; font-size: 13px; }
+.ngar-board-dialog input { width: 100%; padding: 7px 9px; border: 1px solid var(--ng-line); border-radius: 7px; background: transparent; }
+.ngar-board-dialog form button { justify-self: end; }
+.ngar-board-dialog ul { padding: 0; margin: 10px 0 0; list-style: none; max-height: 38dvh; overflow: auto; }
+.ngar-board-dialog li button { display: flex; width: 100%; align-items: baseline; gap: 8px; padding: 7px; text-align: left; border-radius: 6px; }
+.ngar-board-dialog li button:hover { background: var(--ng-hover); }
+.ngar-board-dialog small { margin-left: auto; color: var(--ng-muted); }
+
+.ngar-directory { width: 100%; max-width: var(--dsh-chat-content-width, 748px); margin-inline: auto; }
+.ngar-composer-seat > .ngar-directory { max-height: min(64dvh, 620px); overflow-y: auto; padding: 4px 4px 16px; }
+.ngar-files { display: grid; gap: 6px; }
+.ngar .ngar-file { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 14px; text-align: start;
+  border-radius: 12px; background: var(--dsw-alias-interactive-bg-hover); }
+.ngar .ngar-file:hover { box-shadow: inset 0 0 0 1px var(--ng-line); }
+.ngar-file > span { flex: 1; min-width: 0; }
+.ngar-file strong, .ngar-file small { display: block; overflow-wrap: anywhere; }
+.ngar-file strong { font-weight: 550; }
+.ngar-file small, .ngar-file > svg:last-child { color: var(--ng-muted); }
+.ngar-file small { margin-top: 2px; }
+.ngar-category-preview { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
+.ngar-source-search { display: block; padding: 8px 12px; border-bottom: 1px solid var(--ng-line); }
+.ngar-source-search input { width: 100%; padding: 5px 9px; border: 1px solid var(--ng-line); border-radius: 6px;
+  background: var(--dsw-specific-input-major); }
+.ngar-code { flex: 1; min-height: 0; overflow: auto; padding: 9px 6px 14px; counter-reset: ngar-line; }
+.ngar-code-line { display: flex; align-items: baseline; min-height: 27px; width: 100%; padding: 3px 6px;
+  gap: 8px; text-align: start; counter-increment: ngar-line; }
+.ngar-code-line code, .ngar-code-line::before { font-family: var(--dsh-font-family-code, ui-monospace, monospace); font-size: max(14px, var(--dsh-content-font-size, 14px), var(--dsh-code-font-size, 14px)); line-height: 1.5; }
+.ngar-code-line::before { content: counter(ngar-line); min-width: 3ch; flex: none; text-align: end; color: var(--ng-muted); font-variant-numeric: tabular-nums; }
+.ngar-code-line code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.ngar-code-line em { color: var(--dsw-static-deepseek-500, LinkText); font-style: normal; }
+.ngar-code-group > summary { list-style: none; cursor: pointer; border-radius: 4px; }
+.ngar-code-group > summary::-webkit-details-marker { display: none; }
+.ngar-code-group > summary code, .ngar-bracket code { padding-inline-start: 1ch; }
+.ngar-code-group > summary svg { vertical-align: -.15em; color: var(--ng-muted); }
+.ngar .ngar-board-line { font: inherit; border-radius: 4px; }
+.ngar-board-line code { padding-inline-start: 4ch; }
+.ngar-board-line code span { color: light-dark(#276347, #a6d5b4); }
+.ngar-board-line svg, .ngar-board-line small { align-self: center; color: var(--ng-muted); }
+.ngar .ngar-board-line:disabled { opacity: 1; }
+.ngar-board-line:hover:enabled, .ngar-code-group > summary:hover { background: var(--ng-hover); }
+.ngar-directory-status { min-height: 26px; padding: 4px 12px; border-top: 1px solid var(--ng-line); color: var(--ng-secondary); font-size: 12px; }
+.ngar-managed-action { display: contents; }
+/* 工作区的原生归档会保留草稿。仅在插件接管的会话行和菜单内换成删除入口。 */
+:is([data-slot="sidebar.workspaces.session.row.action"], [data-context-menu]):has(.ngar-managed-action)
+  button:not(.ngar-remove):has(:is([data-icon="dsw-icon-archive-outline-regular"], [data-icon="dsw-icon-pin-outline-regular"], [data-icon="dsw-icon-pin-fill-regular"])) { display: none; }
+.ngar-remove { display: inline-grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0;
+  border-radius: 6px; color: inherit; background: transparent; cursor: pointer; }
+.ngar-remove:hover { background: var(--dsw-alias-interactive-bg-hover); }
+.ngar-remove-error { font-size: 12px; }
+.ngar-settings { max-width: 780px; margin-inline: auto; }
+.ngar-settings fieldset { border: 0; padding: 0; margin: 24px 0; min-width: 0; }
+.ngar-settings legend { font-size: 16px; font-weight: 600; margin-bottom: 10px; padding: 0; }
+.ngar-config-file { display: grid; gap: 6px; font-size: 13px; }
+.ngar-settings input:not([type="checkbox"]), .ngar-settings select { min-width: 0; padding: 7px 9px; border: 1px solid var(--ng-line); border-radius: 6px;
+  background: var(--dsw-specific-input-major); color: inherit; font: inherit; }
+.ngar-config-file input { width: 100%; font-size: 12px !important; }
+.ngar-pref { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px 16px; padding: 10px 0; border-bottom: 1px solid var(--ng-line); }
+.ngar-pref label { line-height: 1.5; }
+.ngar-pref input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--dsw-static-deepseek-500, #467af0); }
+.ngar-pref input[type="number"] { width: 88px; }
+.ngar-pref select { max-width: 220px; }
+.ngar-pref small { grid-column: 1 / -1; color: var(--ng-secondary); overflow-wrap: anywhere; line-height: 1.5; }
+.ngar-pref-path { grid-template-columns: 1fr; }
+.ngar-pref-path > div:not(.ngar-folder-picker) { display: flex; gap: 8px; }
+.ngar-pref-path input { flex: 1; }
+.ngar .ngar-setting-button { padding: 6px 10px; border: 1px solid var(--ng-line); border-radius: 6px; white-space: nowrap; }
+.ngar .ngar-setting-button:hover:enabled { background: var(--ng-hover); }
+.ngar-settings-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ngar-settings-actions span { font-size: 13px; color: var(--ng-secondary); }
+.ngar-settings-dialog { width: min(700px, 94vw); max-height: 88dvh; overflow: auto; }
+.ngar-settings-dialog .ngar-dialog-head { margin-bottom: 18px; }
+.ngar-folder-picker { padding: 10px; border: 1px solid var(--ng-line); border-radius: 8px; overflow-wrap: anywhere; }
+.ngar-folder-picker nav { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+.ngar-folder-list { max-height: 180px; overflow-y: auto; margin-bottom: 8px; }
+.ngar-folder-list button { display: block; width: 100%; padding: 6px; text-align: left; border-radius: 4px; }
+.ngar-folder-list button:hover { background: var(--ng-hover); }
+.ngar-qr { display: block; width: min(232px, 100%); margin: 16px auto 0; }
+.ngar-directory-editor { width: min(620px, 94vw); max-height: 86dvh; overflow: auto; }
+.ngar-directory-path { overflow-wrap: anywhere; }
+.ngar-directory-editor fieldset { min-width: 0; margin: 16px 0; padding: 0; border: 0; }
+.ngar-editor-row, .ngar-editor-footer, .ngar-row-actions, .ngar-followed-controls { display: flex; align-items: center; gap: 6px; }
+.ngar-editor-row { margin: 7px 0; flex-wrap: wrap; }
+.ngar-editor-row label { display: flex; align-items: center; gap: 6px; flex: 1; font-size: 13px; }
+.ngar-editor-row input, .ngar-editor-row select { flex: 1; min-width: 6ch; padding: 5px 8px; border: 1px solid var(--ng-line);
+  border-radius: 6px; background: var(--dsw-specific-input-major); color: inherit; }
+.ngar-editor-group { margin: 12px 0; padding: 8px 12px; border: 1px solid var(--ng-line); border-radius: 8px; }
+.ngar-directory-editor form button, .ngar-followed-controls button { padding: 4px 8px; border: 1px solid var(--ng-line); border-radius: 6px; }
+.ngar-directory-editor form button:hover:enabled, .ngar-followed-controls button:hover { background: var(--ng-hover); }
+.ngar-editor-footer { justify-content: flex-end; margin-top: 14px; }
+.ngar-editor-footer button:first-child { margin-right: auto; }
+.ngar-followed-controls:not(:empty) { padding: 8px 12px; flex-wrap: wrap; font-size: 13px; }
+.ngar-followed-controls strong { margin-right: auto; }
+@media (max-width: 600px) {
+  .ngar-bubble { max-width: 90%; }
+  .ngar-composer-seat { padding-bottom: 10px; }
+  .ngar-records { max-height: max(145px, calc(100dvh - 330px)); }
+}

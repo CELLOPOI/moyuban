@@ -1,0 +1,15 @@
+{
+  "cacheDirectory": "",
+  "boardDataDirectory": "",
+  "mediaCacheMiB": 128,
+  "directoryCacheMinutes": 30,
+  "favoriteSyncMinutes": 5,
+  "renderSmiles": true,
+  "foldImages": true,
+  "showAuthorUid": true,
+  "promoteOnPick": true,
+  "openOnPick": true,
+  "defaultModel": "DeepSeek-V4.1-Flash",
+  "defaultEffort": "Low",
+  "defaultPermission": "完全权限"
+}
